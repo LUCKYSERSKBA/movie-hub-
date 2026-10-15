@@ -22,8 +22,8 @@
 </head>
 <body>
 
-    <!-- ഒറിജിനൽ വെബ്‌സൈറ്റ് ലോഡ് ചെയ്യുന്ന ഐഫ്രെയിം -->
-    <iframe id="cineFrame" src="https://cinejoy.pk" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+    <!-- സുരക്ഷിതമായ പ്രോക്സി വഴി സൈറ്റ് ലോഡ് ചെയ്യുന്ന ഐഫ്രെയിം -->
+    <iframe id="cineFrame" src="https://api.allorigins.win/raw?url=https://cinejoy.pk" sandbox="allow-scripts allow-same-origin allow-forms allow-modals"></iframe>
 
     <script>
         const iframe = document.getElementById('cineFrame');
@@ -32,7 +32,7 @@
             try {
                 const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
-                // 1. ഒറിജിനൽ 'CINEJOY' ലോഗോയും താഴെയുള്ള ഇമെയിൽ/ഡിസ്ക്ലെയിമറും ഹൈഡ് ചെയ്യാൻ
+                // 1. ഒറിജിനൽ ലോഗോയും ഡിസ്ക്ലെയിമറും ഹൈഡ് ചെയ്യാൻ
                 const elementsToHide = iframeDoc.querySelectorAll('img[src*="logo"], .cinejoy-logo, footer, p');
                 elementsToHide.forEach(el => {
                     if (el.innerText && (el.innerText.includes('Cinejoy does not host') || el.innerText.includes('cinejoy.pk'))) {
@@ -40,7 +40,7 @@
                     }
                 });
 
-                // 2. താഴെയുള്ള ലോഗോയും ഇമെയിലും മാറ്റി നമ്മുടെ പുതിയ വിവരങ്ങൾ വെക്കാൻ
+                // 2. താഴെയുള്ള ബ്രാൻഡിങ് മാറ്റങ്ങൾ
                 const targetArea = iframeDoc.querySelector('body');
                 if (targetArea && !iframeDoc.getElementById('myCustomBrand')) {
                     const customDiv = iframeDoc.createElement('div');
@@ -56,7 +56,7 @@
                     targetArea.appendChild(customDiv);
                 }
 
-                // 3. സെറ്റിംഗ്സിനകത്ത് എക്സ്ട്രാ ആയി വരുന്ന 'About' സെക്ഷൻ (ഗ്ലാസ് ടൈപ്പ് ഇൻസ്റ്റാഗ്രാം ബോക്സ് സഹിതം)
+                // 3. സെറ്റിംഗ്സ് എബൗട്ട് സെക്ഷൻ & ഇൻസ്റ്റാഗ്രാം ഗ്ലാസ് ബോക്സ്
                 const settingsCheck = iframeDoc.querySelector('.settings-container, [class*="setting"]');
                 if (settingsCheck && !iframeDoc.getElementById('customAboutSection')) {
                     const aboutDiv = iframeDoc.createElement('div');
@@ -73,8 +73,8 @@
                         <p style="font-size: 14px; font-weight: bold; color: #fff; margin: 5px 0;">Developed by Aadhi</p>
                         <p style="font-size: 11px; color: #888; margin-bottom: 15px;"><a href="mailto:Aadhixd204@gmail.com" style="color: #4ade80; text-decoration: none;">Aadhixd204@gmail.com</a></p>
                         
-                        <!-- ഗ്ലാസ് ടൈപ്പ് ഇൻസ്റ്റാഗ്രാം ബോക്സ് -->
-                        <a href="https://www.instagram.com/aadhi.x._______________" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 8px 16px; border-radius: 30px; text-decoration: none; color: #fff; margin: 10px 0; transition: 0.3s;">
+                        <!-- ഇൻസ്റ്റാഗ്രാം ഗ്ലാസ് ബോക്സ് -->
+                        <a href="https://www.instagram.com/aadhi.x._______________" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 8px 16px; border-radius: 30px; text-decoration: none; color: #fff; margin: 10px 0;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                             <span style="font-size: 13px; font-weight: 500; color: #fff;">aadhi</span>
                         </a>
@@ -89,7 +89,7 @@
                 }
 
             } catch (e) {
-                console.log("Cross-origin notice: Proxy configuration may be required if iframe restrictions apply.");
+                console.log("Cross-origin notice handled.");
             }
         };
     </script>
